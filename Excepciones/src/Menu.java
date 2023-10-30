@@ -9,6 +9,9 @@ public class Menu extends JFrame implements ActionListener{
     Container contenedor; 
     JButton btnCP, btnEP, btnC;
 
+    String guarda[][] = new String[20][5];
+    int fila = 0;
+
     public Menu(){
         contenedor = getContentPane();
         setLocationRelativeTo(null);
@@ -21,6 +24,7 @@ public class Menu extends JFrame implements ActionListener{
 
         btnEP = new JButton("ELEGIR PLATO");
         btnEP.setBounds(120, 100, 150, 40);
+        btnEP.addActionListener(this);
         contenedor.add(btnEP);
 
         btnC = new JButton("CARRITO");
@@ -30,6 +34,8 @@ public class Menu extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setVisible(true);
+
+        
     }
 
     public static void main(String[] args) throws Exception {
@@ -40,11 +46,17 @@ public class Menu extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnCP){
             dispose();
-            new CrearPlato();
+            CrearPlato cp = new CrearPlato(guarda, fila);
+            guarda = cp.guarda;
+            fila = cp.fila;
+            fila++;
+            System.out.println("Fila: "+fila);
+            
            //cp.setVisible(true);
         }else if(e.getSource() == btnEP){
-            dispose();
-            new ElegirPlato();
+            //dispose();
+            //new ElegirPlato();
+            System.out.println("Funciono" + guarda[fila][0]);
         }else if(e.getSource() == btnC){
             dispose();
             new Carrito();

@@ -21,9 +21,10 @@ public class CrearPlato extends JFrame implements ActionListener{
     JScrollPane scroll;
     JComboBox <String> jcTipo;
     JButton btnGuardar, btnSalir;
-    String guarda[][] = new String[10][5];
+    int fila;
+    String guarda[][];
 
-    public CrearPlato(){
+    public CrearPlato(String[][] guarda2, int fila2){
         contenedor = getContentPane();
         setLocationRelativeTo(null);
         contenedor.setLayout(null);
@@ -88,11 +89,15 @@ public class CrearPlato extends JFrame implements ActionListener{
         btnSalir = new JButton("Salir");
         btnSalir.setBounds(270, 380, 100,30);
         btnSalir.setFont(new Font("Times New Roman",Font.PLAIN, 20));
+        btnSalir.addActionListener(this);
         contenedor.add(btnSalir);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 500);
         setVisible(true);
+
+        this.guarda = guarda2;
+        this.fila = fila2;
     }
 
     @Override
@@ -103,20 +108,25 @@ public class CrearPlato extends JFrame implements ActionListener{
             String tipo = ""+jcTipo.getSelectedItem();
             int tiempo = Integer.parseInt(jtTiempo.getText());
             int precio = Integer.parseInt(jtCosto.getText());
-            for(int i = 0; i<10; i++){
-                guarda[i][0] = nombre;
-                guarda[i][1] = descrip;
-                guarda[i][2] = tipo;
-                guarda[i][3] = ""+tiempo;
-                guarda[i][4] = ""+precio;
+            
+            guarda[fila][0] = nombre;
+            guarda[fila][1] = descrip;
+            guarda[fila][2] = tipo;
+            guarda[fila][3] = ""+tiempo;
+            guarda[fila][4] = ""+precio;
+            System.out.println("Debe llegar "+fila);
+            for(int f = 0; f<fila; f++){
+                System.out.println(guarda[f][0]);
+                System.out.println(guarda[f][1]);
+                System.out.println(guarda[f][2]);
+                System.out.println(guarda[f][3]);
+                System.out.println(guarda[f][4]);
             }
-            for(int f = 0; f<guarda.length; f++){
-                for(int c = 0; c<guarda[f].length; c++){
-                    System.out.println(guarda[f][c]);
-                }
-            }
+            
         }else if(e.getSource() == btnSalir){
             dispose();
+            Menu m = new Menu();
+            m.setVisible(true);
         }
     }
 }
