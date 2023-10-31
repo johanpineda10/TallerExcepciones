@@ -45,18 +45,17 @@ public class Menu extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnCP){
-            dispose();
-            CrearPlato cp = new CrearPlato(guarda, fila);
-            guarda = cp.guarda;
-            fila = cp.fila;
-            fila++;
-            System.out.println("Fila: "+fila);
             
-           //cp.setVisible(true);
+            CrearPlato cp = new CrearPlato(guarda, fila, this);
+            guarda = cp.guarda;
+            cp.setVisible(true);
+            fila++;
+            dispose();
         }else if(e.getSource() == btnEP){
             //dispose();
-            //new ElegirPlato();
+
             System.out.println("Funciono" + guarda[fila][0]);
+            new ElegirPlato(guarda, fila);
         }else if(e.getSource() == btnC){
             dispose();
             new Carrito();
