@@ -2,6 +2,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,9 +20,11 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
     JComboBox <String> jcPlato;
     JTextArea jaDes;
     JScrollPane scroll;
-    JButton btnAgregarCarrito, btnSalir;
+    JButton btnAgregarCarrito, btnSalir, btnCarrito;
     String guar[][];
     int fila;
+    String carro[][] = new String[20][5];
+    int fi = 0;
     public ElegirPlato(String guarda[][], int fila){
         contenedor = getContentPane();
         setLocationRelativeTo(null);
@@ -85,14 +88,20 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
         contenedor.add(jlCosto);
         contenedor.add(jlResulCosto);
         
-        btnAgregarCarrito = new JButton("Agregar");
-        btnAgregarCarrito.setBounds(140, 380, 110, 30);
+        btnAgregarCarrito = new JButton("Comprar");
+        btnAgregarCarrito.setBounds(80, 380, 110, 30);
         btnAgregarCarrito.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        //btnAgregarCarrito.addActionListener(this);
+        btnAgregarCarrito.addActionListener(this);
         contenedor.add(btnAgregarCarrito);
 
+        btnCarrito = new JButton("Carrito");
+        btnCarrito.setBounds(200, 380, 100, 30);
+        btnCarrito.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnCarrito.addActionListener(this);
+        contenedor.add(btnCarrito);
+
         btnSalir = new JButton("Salir");
-        btnSalir.setBounds(270, 380, 100, 30);
+        btnSalir.setBounds(320, 380, 100, 30);
         btnSalir.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnSalir.addActionListener(this);
         contenedor.add(btnSalir);
@@ -107,7 +116,15 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnAgregarCarrito) {
+            agregar(carro, fi);
+            fi++;
+            JOptionPane.showMessageDialog(null, "Plato agregado al carrito");
+
+            //dispose();
+        } else if (e.getSource() == btnCarrito) {
             
+            Carrito car = new Carrito(carro, fi);
+            car.setVisible(true);
             dispose();
         } else if (e.getSource() == btnSalir) {
             dispose();
@@ -130,5 +147,14 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
                 }
             }
         }
+    }
+
+    public void agregar(String carros[][], int fila){
+        carros[fila][0] = ""+jcPlato.getSelectedItem();
+        carros[fila][1] = jaDes.getText();
+        carros[fila][2] = jlResulTipo.getText();
+        carros[fila][3] = jlResulTiempo.getText();
+        carros[fila][4] = jlResulCosto.getText();
+        this.carro = carros;
     }
 }

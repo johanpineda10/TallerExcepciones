@@ -23,13 +23,9 @@ public class Menu extends JFrame implements ActionListener{
         contenedor.add(btnCP);
 
         btnEP = new JButton("ELEGIR PLATO");
-        btnEP.setBounds(120, 100, 150, 40);
+        btnEP.setBounds(120, 130, 150, 40);
         btnEP.addActionListener(this);
         contenedor.add(btnEP);
-
-        btnC = new JButton("CARRITO");
-        btnC.setBounds(120, 150, 150, 40);
-        contenedor.add(btnC);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -56,9 +52,6 @@ public class Menu extends JFrame implements ActionListener{
 
             System.out.println("Funciono" + guarda[fila][0]);
             new ElegirPlato(guarda, fila);
-        }else if(e.getSource() == btnC){
-            dispose();
-            new Carrito();
         }
     }
 }

@@ -2,6 +2,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -116,30 +117,30 @@ public class CrearPlato extends JFrame implements ActionListener {
     }
 
     public void Crear(String crear[][], int fila) {
-        String nombre = jtNombre.getText();
-        String descrip = jaDescripcion.getText();
-        String tipo = "" + jcTipo.getSelectedItem();
-        int tiempo = Integer.parseInt(jtTiempo.getText());
-        int precio = Integer.parseInt(jtCosto.getText());
+        if(jtNombre.getText().equals("") || jaDescripcion.getText().equals("") || jcTipo.getSelectedItem().equals("") || jtTiempo.getText().equals("")||jtCosto.getText().equals("crear")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacios");
+        }else{
+            String nombre = jtNombre.getText();
+            String descrip = jaDescripcion.getText();
+            String tipo = "" + jcTipo.getSelectedItem();
+            try{
+            int tiempo = Integer.parseInt(jtTiempo.getText());
+            int precio = Integer.parseInt(jtCosto.getText());
 
-        crear[fila][0] = nombre;
-        crear[fila][1] = descrip;
-        crear[fila][2] = tipo;
-        crear[fila][3] = "" + tiempo;
-        crear[fila][4] = "" + precio;
-        fila++;
-        //System.out.println("Debe llegar " + fila);
-        for (int f = 0; f < fila; f++) {
-            System.out.println(crear[f][0]);
-            System.out.println(crear[f][1]);
-            System.out.println(crear[f][2]);
-            System.out.println(crear[f][3]);
-            System.out.println(crear[f][4]);
+            crear[fila][0] = nombre;
+            crear[fila][1] = descrip;
+            crear[fila][2] = tipo;
+            crear[fila][3] = "" + tiempo;
+            crear[fila][4] = "" + precio;
+            fila++;
             
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Digite numeros");
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Plato Creado con exito");
+            this.guarda = crear;
         }
-        System.out.println("esto: "+fila);
-        this.guarda = crear;
-        
     }
         
 }
