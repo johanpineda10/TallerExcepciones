@@ -39,12 +39,14 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
         jlNombre.setBounds(90, 60, 250, 20);
         jlNombre.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 
-        String p[] = new String[fila];
-        for(int i = 0; i <fila;i++){
-            p[i] = guarda[i][0]; 
+        String p[] = new String[fila +1];
+        p[0] = "";
+        for(int i = 1; i <= fila;i++){
+            p[i] = guarda[i-1][0]; 
         }
-        System.out.println(guarda[0][0]);
+        
         jcPlato = new JComboBox<String>(p);
+        jcPlato.setSelectedIndex(0);
         jcPlato.setBounds(270, 60, 150, 25);
         jcPlato.addItemListener(this);
         jcPlato.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -122,10 +124,35 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
 
             //dispose();
         } else if (e.getSource() == btnCarrito) {
+            boolean valor = false;
+            for(int i =0; i<fi; i++){
+                System.out.println(carro[i][2]);
+            }
+                
+            for(int i = 0; i<fi; i++){
+                
+                System.out.println(fi);
+                System.out.println(fila);
+                System.out.println(carro[i][2]);
+                if(carro[i][2].equals("Bebida")){
+                    valor = true;
+                }else{
+                    valor = false;
+                }
+            }
+                if(valor){
+                    Carrito car = new Carrito(carro, fi);
+                    car.setVisible(true);
+                    dispose();
+                }else{
+                    try{
+                        throw new ExcepTipo("No sea loco, compre la bebida");
+                    }catch(ExcepTipo ex){
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                }
+        
             
-            Carrito car = new Carrito(carro, fi);
-            car.setVisible(true);
-            dispose();
         } else if (e.getSource() == btnSalir) {
             dispose();
             Menu m = new Menu();
