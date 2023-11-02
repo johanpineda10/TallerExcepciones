@@ -125,15 +125,9 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
             //dispose();
         } else if (e.getSource() == btnCarrito) {
             boolean valor = false;
-            for(int i =0; i<fi; i++){
-                System.out.println(carro[i][2]);
-            }
                 
             for(int i = 0; i<fi; i++){
                 
-                System.out.println(fi);
-                System.out.println(fila);
-                System.out.println(carro[i][2]);
                 if(carro[i][2].equals("Bebida")){
                     valor = true;
                 }else{

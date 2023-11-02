@@ -47,7 +47,6 @@ public class Carrito extends JFrame implements ActionListener{
             total += Integer.parseInt(carro[i][4]);
         }
         
-        System.out.println(total);
         jaPlatos.setText(datos);
         jlTotal = new JLabel("Total: ");
         jlTotal.setBounds(90, 280, 250, 20);
