@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 public class CrearPlato extends JFrame implements ActionListener {
     Container contenedor;
-    JLabel jlTitu, jlNombre, jlDescripcion, jlCosto, jlTiempo, jlTipo;
+    JLabel jlTitu, jlNombre, jlDescripcion, jlCosto, jlTiempo, jlTipo, jlInfo;
     JTextField jtNombre, jtCosto, jtTiempo;
     JTextArea jaDescripcion;
     JScrollPane scroll;
@@ -66,11 +66,15 @@ public class CrearPlato extends JFrame implements ActionListener {
         jlTiempo = new JLabel("Tiempo preparacion: ");
         jlTiempo.setBounds(90, 250, 180, 25);
         jlTiempo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        jlInfo = new JLabel("Minutos");
+        jlInfo.setBounds(355, 250, 180, 25);
+        jlInfo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         jtTiempo = new JTextField(5);
-        jtTiempo.setBounds(270, 250, 150, 25);
+        jtTiempo.setBounds(270, 250, 80, 25);
         jtTiempo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         contenedor.add(jlTiempo);
         contenedor.add(jtTiempo);
+        contenedor.add(jlInfo);
 
         jlCosto = new JLabel("Costo del plato:");
         jlCosto.setBounds(90, 310, 180, 25);

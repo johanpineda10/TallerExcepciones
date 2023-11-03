@@ -130,6 +130,7 @@ public class ElegirPlato extends JFrame implements ActionListener, ItemListener{
                 
                 if(carro[i][2].equals("Bebida")){
                     valor = true;
+                    break;
                 }else{
                     valor = false;
                 }
